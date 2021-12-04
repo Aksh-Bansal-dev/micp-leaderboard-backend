@@ -1,18 +1,20 @@
-type Member @collection(name: "members"){
-   username: String! 
-   initialRating: Int!
-   currentRating: Int!
+type Member @collection(name: "members") {
+  username: String!
+  initialRating: Int!
+  currentRating: Int!
 }
 
 type Query {
-   allMembers: [Member!] 
+  allMembers: [Member!]
 }
 
 type Mutation {
   addMember(
-    username: String!,
+    username: String!
     initialRating: Int!
     currentRating: Int!
   ): Member @resolver(name: "addMember")
-  updateMember(username: String!, rating: Int!): Member @resolver(name: "updateMember")
+  updateMember(username: String!, rating: Int!): Member
+    @resolver(name: "updateMember")
+  fixMistake(spell: Int!): Member @resolver(name: "fixMistake")
 }
