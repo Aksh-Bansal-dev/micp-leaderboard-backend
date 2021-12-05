@@ -4,13 +4,13 @@ import getRating from "./getRating";
 
 const updateBody = (username: string, rating: string): string => {
   const res = {
-    query: `mutation {updateMember(username:"${username}", rating:${rating}) {username}}`,
+    query: `mutation {updateMember(username:"${username}", rating:${rating}) {username, initialRating, currentRating}}`,
   };
   return JSON.stringify(res);
 };
 const createBody = (username: string, cur: string, ini: string): string => {
   const res = {
-    query: `mutation {addMember(username:"${username}", currentRating:${cur}, initialRating:${ini}) {username}}`,
+    query: `mutation {addMember(username:"${username}", currentRating:${cur}, initialRating:${ini}) {username, initialRating, currentRating}}`,
   };
   return JSON.stringify(res);
 };
@@ -25,7 +25,8 @@ const updateMember = async (username: string, rating: string) => {
       },
     }
   );
-  console.log(data);
+  console.log("[UPDATE]");
+  console.log(JSON.stringify(data, null, 4));
 };
 
 const addMember = async (username: string, cur: string, ini: string) => {
@@ -38,7 +39,8 @@ const addMember = async (username: string, cur: string, ini: string) => {
       },
     }
   );
-  console.log(data);
+  console.log("[CREATE]");
+  console.log(JSON.stringify(data, null, 4));
 };
 const updateDB = async (arr: string[]): Promise<void> => {
   const members = await getMembers();
