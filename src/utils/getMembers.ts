@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const body = {
-  query: "query {allMembers {data {username}}}",
+  query: "query {allMembers(_size: 1000) {data {username}}}",
 };
 
 const getMembers = async (): Promise<any[]> => {
@@ -10,7 +10,12 @@ const getMembers = async (): Promise<any[]> => {
       Authorization: "bearer " + process.env.DB_SECRET!,
     },
   });
-  return data.data.allMembers.data;
+  const res = data.data.allMembers.data;
+  const arr = [];
+  for (let i = 0; i < res.length; i++) {
+    arr.push(res[i].username);
+  }
+  return arr;
 };
 
 export default getMembers;
