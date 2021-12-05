@@ -13,5 +13,10 @@ const url = "https://codeforces.com/group/TImmUza0J0/members";
   });
 
   const res = Array.from(set);
+  console.log("Entries: " + res.length);
+  if (!res || res.length == 0) {
+    console.log("CF cookie expired!");
+    return;
+  }
   await updateDB(res);
 })();
