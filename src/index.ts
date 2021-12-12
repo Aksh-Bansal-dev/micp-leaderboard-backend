@@ -1,3 +1,4 @@
+import deployHook from "./ci/deployHook";
 import { loadCheerio } from "./loadCheerio";
 import updateDB from "./utils/updateDB";
 require("dotenv").config();
@@ -19,4 +20,5 @@ const url = process.env.CF_GROUP_URL;
     return;
   }
   await updateDB(res);
+  await deployHook();
 })();
