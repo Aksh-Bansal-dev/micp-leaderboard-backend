@@ -42,7 +42,10 @@ const addMember = async (username: string, cur: string, ini: string) => {
   console.log("[CREATE]");
   console.log(JSON.stringify(data, null, 4));
 };
-const updateDB = async (arr: string[]): Promise<void> => {
+const updateDB = async (
+  arr: string[],
+  callback?: () => Promise<void>
+): Promise<void> => {
   const members = await getMembers();
   const ratings = await getRating(arr);
   arr.map((e, i) => {
@@ -53,6 +56,7 @@ const updateDB = async (arr: string[]): Promise<void> => {
       addMember(username, ratings[i].maxRating, ratings[i].maxRating);
     }
   });
+  if (callback) await callback();
 };
 
 export default updateDB;

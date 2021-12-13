@@ -19,6 +19,7 @@ const url = process.env.CF_GROUP_URL;
     console.log("CF cookie expired!");
     return;
   }
-  await updateDB(res);
-  await deployHook();
+  await updateDB(res, async () => {
+    await deployHook();
+  });
 })();
