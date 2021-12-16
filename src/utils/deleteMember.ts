@@ -19,11 +19,16 @@ const deleteMember = async (username: string) => {
 
 const deleteMembers = async (
   curMembers: string[],
-  dbMembers: string[]
+  dbMembers: string[],
+  dangerMode: boolean
 ): Promise<void> => {
   dbMembers.map((e) => {
     if (!curMembers.includes(e)) {
-      deleteMember(e);
+      if (dangerMode) {
+        deleteMember(e);
+      } else {
+        console.log("[DELETE] " + e);
+      }
     }
   });
 };

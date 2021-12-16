@@ -49,7 +49,7 @@ const updateDB = async (
 ): Promise<void> => {
   const members = await getMembers();
   const ratings = await getRating(arr);
-  deleteMembers(arr, members);
+  deleteMembers(arr, members, false);
   arr.map((e, i) => {
     const username = e;
     if (members.includes(e)) {
