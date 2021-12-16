@@ -14,7 +14,10 @@ type Mutation {
     initialRating: Int!
     currentRating: Int!
   ): Member @resolver(name: "addMember")
-  updateMember(username: String!, rating: Int!): Member
-    @resolver(name: "updateMember")
+
+  updateMember(username: String!, rating: Int!): Member @resolver(name: "updateMember")
+
+  deleteMember(username: String!): Member @resolver(name: "deleteMember")
+
   fixMistake(spell: Int!): Member @resolver(name: "fixMistake")
 }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import deleteMembers from "./deleteMember";
 import getMembers from "./getMembers";
 import getRating from "./getRating";
 
@@ -48,6 +49,7 @@ const updateDB = async (
 ): Promise<void> => {
   const members = await getMembers();
   const ratings = await getRating(arr);
+  deleteMembers(arr, members);
   arr.map((e, i) => {
     const username = e;
     if (members.includes(e)) {
