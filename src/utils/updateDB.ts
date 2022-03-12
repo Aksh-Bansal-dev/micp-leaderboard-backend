@@ -45,16 +45,18 @@ const addMember = async (username: string, cur: string, ini: string) => {
 };
 const updateDB = async (
   arr: string[],
+  shouldAddNewMember: boolean,
+  shouldDeleteMembers: boolean,
   callback?: () => Promise<void>
 ): Promise<void> => {
   const members = await getMembers();
   const ratings = await getRating(arr);
-  deleteMembers(arr, members, false);
+  deleteMembers(arr, members, shouldDeleteMembers);
   arr.map((e, i) => {
     const username = e;
     if (members.includes(e)) {
       updateMember(username, ratings[i].maxRating);
-    } else {
+    } else if (shouldAddNewMember) {
       addMember(username, ratings[i].maxRating, ratings[i].maxRating);
     }
   });
