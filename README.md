@@ -4,7 +4,7 @@ A website to show current standings of most improved programmers of The Programm
 
 This repo is responsible to update the scores in the database. It uses Codeforces API to get the ratings of all members.
 
-Frontend repo: [link](https://github.com/Aksh-Bansal-dev/micp-leaderboard-frontend)
+Frontend repo: [link](https://github.com/BitByte-TPC/micp-leaderboard-frontend)
 
 ## How it works?
 The backend uses **codeforces API** to get all members in the group along with their ratings. **FaunaDB** is used as the database 
